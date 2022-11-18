@@ -1,0 +1,128 @@
+{% extends 'place_base/base.html' %}
+{% block main_area %}
+
+<!--=================================
+=            Single Blog            =
+==================================-->
+
+
+<section class="blog single-blog section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<article class="single-post">
+					<h1 style="margin-bottom: 1rem;">{{ place.res_name }}</h1>
+
+					<table class="table border-info">
+						<tr>
+							<th rowspan="2">주소</th>
+							<td>{{place.res_road_address}}</td>
+						</tr>
+						<tr>
+							<td><i class="fa fa-building"></i>&nbsp;{{ place.res_address}}</td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>{{ place.res_tel }}</td>
+						</tr>
+						<tr>
+							<th>편의사항</th>
+							<td>{{ place.res_comfortables}}</td>
+						</tr>
+					
+						<tr>
+							<th>웹사이트</th>
+							<td><a href="{{place.res_link}}">식당 홈페이지</a></td>
+						</tr></table>
+					<table class="table border-info">
+	
+						<tr>
+							<th>영업시간</th>
+							<td>None</td>
+						</tr>
+						<tr>
+							<th>메뉴</th>
+							<td colspan="2">
+		
+
+		
+
+
+							</td>
+						</tr>
+					</table>
+					<br>
+					<p style="font-weight: 500; color: #000000; font-size: 1rem">{{ place.res_description}}</p>
+				</article>
+				
+					
+				
+
+			
+				<div class="block comment">
+					<h4>Leave A Comment</h4>
+					<form action="#">
+						<!-- Message -->
+						<div class="form-group mb-30">
+							<label for="message">Message</label>
+							<textarea class="form-control" id="message" rows="8" required></textarea>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<!-- Name -->
+								<div class="form-group mb-30">
+									<label for="name">Name</label>
+									<input type="text" class="form-control" id="name" required>
+								</div>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<!-- Email -->
+								<div class="form-group mb-30">
+									<label for="email">Email</label>
+									<input type="email" class="form-control" id="email" required>
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-transparent">Leave Comment</button>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="sidebar">
+					<!-- Search Widget -->
+					<div class="widget search p-0">
+						<div class="input-group">
+							<input type="text" class="form-control" id="expire" placeholder="Search...">
+							<span class="input-group-addon"><i class="fa fa-search px-3"></i></span>
+						</div>
+					</div>
+					<!-- Category Widget -->
+					<div class="widget category">
+						<!-- Widget Header -->
+						<h5 class="widget-header">Categories</h5>
+						<ul class="category-list">
+							<li><a href="category.html">Appearel <span class="float-right">(2)</span></a></li>
+							<li><a href="category.html">Accesories <span class="float-right">(5)</span></a></li>
+							<li><a href="category.html">Business<span class="float-right">(7)</span></a></li>
+							<li><a href="category.html">Entertaiment<span class="float-right">(3)</span></a></li>
+							<li><a href="category.html">Education<span class="float-right">(9)</span></a></li>
+						</ul>
+					</div>
+					<!-- Archive Widget -->
+					<div class="widget archive">
+						<!-- Widget Header -->
+						<h5 class="widget-header">Archives</h5>
+						<ul class="archive-list">
+							<li><a href="ad-list-view.html">January 2017</a></li>
+							<li><a href="ad-list-view.html">February 2017</a></li>
+							<li><a href="ad-list-view.html">March 2017</a></li>
+							<li><a href="ad-list-view.html">April 2017</a></li>
+							<li><a href="ad-list-view.html">May 2017</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

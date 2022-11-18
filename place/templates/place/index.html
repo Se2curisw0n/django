@@ -1,0 +1,215 @@
+{% extends 'place_base/base.html' %}
+{% block main_area %}
+
+<!--===============================
+=            Hero Area            =
+================================-->
+<section class="hero-area bg-1 text-center overly">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Header Contetnt -->
+				<div class="content-block">
+					<h1>야미</h1>
+					<p>오늘 뭐먹지 고민하지말고 찾아보세요</p>
+					<div class="short-popular-category-list text-center">
+						<h2>Popular Category</h2>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<a href="category.html"><i class="fa fa-bed"></i> Hotel</a></li>
+							<li class="list-inline-item">
+								<a href="category.html"><i class="fa fa-grav"></i> Fitness</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="category.html"><i class="fa fa-car"></i> Cars</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="category.html"><i class="fa fa-cutlery"></i> Restaurants</a>
+							</li>
+							<li class="list-inline-item">
+								<a href="category.html"><i class="fa fa-coffee"></i> Cafe</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+				<!-- Advance Search -->
+				<div class="advance-search">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-lg-12 col-md-12 align-content-center">
+								<form>
+									<div class="form-row">
+                                        <div class="form-group col-lg-3 col-md-6">
+											<select class="w-100 form-control mt-lg-1 mt-md-2" aria-placeholder="카레고리">
+												<option selected disabled>카테고리</option>
+												<option value="1">한식</option>
+												<option value="2">일식</option>
+												<option value="3">중식</option>
+											</select>
+										</div>
+                                        <div class="form-group col-lg-3 col-md-6">
+											<input type="text" class="form-control my-2 my-lg-1" id="inputLocation4" placeholder="위치">
+										</div>
+										<div class="form-group col-xl-4 col-lg-3 col-md-6">
+											<input type="text" class="form-control my-2 my-lg-1" id="inputtext4"
+												placeholder="오늘 뭐먹지?">
+										</div>
+										<div class="form-group col-xl-2 col-lg-3 col-md-6 align-self-center">
+											<button type="submit" class="btn btn-primary active w-100">검색</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+
+<!--===========================================
+=            Popular deals section            =
+============================================-->
+<section class="popular-deals section bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="section-title">
+					<h2>핫플레이스{{store.site}}</h2>
+					<p>뜨고 있는 맛집들</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="trending-ads-slide">
+					{% for i in main %}
+					<div class="col-sm-12 col-lg-4">
+						<!-- product card -->
+						<div class="product-item bg-light">
+							<div class="card">
+								<div class="thumb-content">
+									<a href="{% url 'place:place-detail' i.id %}">
+									<img class="card-img-top img-fluid" src="/media/{{i.res_thumbnail}}" alt="Card image cap">
+									</a>
+								</div>
+								<div class="card-body">
+									<h4 class="card-title"><a href="{% url 'place:place-detail' i.id %}">{{ i.res_name }}</a></h4>
+									<ul class="list-inline product-meta">
+										<li class="list-inline-item">
+											<a href="single.html"><i class="fa fa-check"></i>준비중</a>
+										</li>
+										<li class="list-inline-item">
+											<a href="category.html"><i class="fa fa-check"></i>준비중</a>
+										</li>
+									</ul>
+									{% if i.res_summary != '' %}
+										<p class="card-text">{{ i.res_summary }}</p>
+									{% else %}
+									<p class="card-text">설명 준비중</p>
+									{% endif %}
+									<div class="product-ratings">
+										<ul class="list-inline">
+											{% for j in star %}
+												{% if j.name == i.id %}
+													{% for k in j.star %}
+														{% if k == 0 %}
+															<li class="list-inline-item"><i class="fa fa-star"></i></li>
+														{% endif %}
+														{% if k == 1 %}
+															<li class="list-inline-item selected"><i class="fa fa-star"></i></li>
+														{% endif %}
+														{% if k == 2 %}
+															<li class="list-inline-item selected"><i class="fa fa-star-half"></i></li>
+														{% endif %}
+													{% endfor %}
+												{% endif %}
+											{% endfor %}
+											{% if i.res_stars != None %}
+												<li class="list-inline-item selected">{{i.res_stars}}</li>
+											{% endif %}
+										
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<!--==========================================
+=            All Category Section            =
+===========================================-->
+
+<section class=" section">
+	<!-- Container Start -->
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<!-- Section title -->
+				<div class="section-title">
+					<h2>카테고리 전체 보기</h2>
+					<p>골라보세요~</p>
+				</div>
+				<div class="row">
+					{{ categories.test }}
+					<br><br>
+					<!-- Category list -->
+					{% for category in categories.main_category_name %}
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-laptop icon-bg-1"></i>
+								<h4>{{ category.main_category }}</h4>
+							</div>
+
+							<ul class="category-list">
+								<li><a href="category.html">Laptops <span>93</span></a></li>
+								<li><a href="category.html">Iphone <span>233</span></a></li>
+								<li><a href="category.html">Microsoft <span>183</span></a></li>
+								<li><a href="category.html">Monitors <span>343</span></a></li>
+							</ul>
+
+						</div>
+					</div> <!-- /Category List -->
+					{% endfor %}
+					<!-- Category list -->
+					<div class="col-lg-3 offset-lg-0 col-md-5 offset-md-1 col-sm-6">
+						<div class="category-block">
+							<div class="header">
+								<i class="fa fa-apple icon-bg-2"></i>
+								<h4>Restaurants</h4>
+							</div>
+							<ul class="category-list">
+								<li><a href="category.html">Cafe <span>393</span></a></li>
+								<li><a href="category.html">Fast food <span>23</span></a></li>
+								<li><a href="category.html">Restaurants <span>13</span></a></li>
+								<li><a href="category.html">Food Track<span>43</span></a></li>
+							</ul>
+						</div>
+					</div> <!-- /Category List -->
+					
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Container End -->
+</section>
+
+{% endblock %}

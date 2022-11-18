@@ -1,0 +1,70 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light navigation">
+    <a class="navbar-brand" href="{% url 'place:index' %}">
+        <img style="height:70px; width:130px;" src="{% static 'place/images/logos.jpg' %}" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto main-nav ">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'place:index' %}">홈</a>
+            </li>
+            <li class="nav-item dropdown dropdown-slide @@dashboard">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#!">카테고리<span><i class="fa fa-angle-down"></i></span>
+                </a>
+
+                <!-- Dropdown list -->
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item @@dashboardPage" href="dashboard.html">한식</a></li>
+                    <li><a class="dropdown-item @@dashboardMyAds" href="dashboard-my-ads.html">중식</a></li>
+                    <li><a class="dropdown-item @@dashboardFavouriteAds" href="dashboard-favourite-ads.html">일식</a></li>
+                    
+                    <li class="dropdown dropdown-submenu dropright">
+                        <a class="dropdown-item dropdown-toggle" href="#!" id="dropdown0501" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">양식</a>
+    
+                        <ul class="dropdown-menu" aria-labelledby="dropdown0501">
+                            <li><a class="dropdown-item" href="index.html">파스타</a></li>
+                            <li><a class="dropdown-item" href="index.html">스테이크</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown dropdown-slide @@pages">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    지역 <span><i class="fa fa-angle-down"></i></span>
+                </a>
+                <!-- Dropdown list -->
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item @@about" href="about-us.html">About Us</a></li>
+                    <li><a class="dropdown-item @@contact" href="contact-us.html">Contact Us</a></li>
+                    <li><a class="dropdown-item @@profile" href="user-profile.html">User Profile</a></li>
+                    <li><a class="dropdown-item @@404" href="404.html">404 Page</a></li>
+                    <li><a class="dropdown-item @@package" href="package.html">Package</a></li>
+                    <li><a class="dropdown-item @@singlePage" href="single.html">Single Page</a></li>
+                    <li><a class="dropdown-item @@store" href="store.html">Store Single</a></li>
+                    <li><a class="dropdown-item @@blog" href="blog.html">Blog</a></li>
+                    <li><a class="dropdown-item @@singleBlog" href="single-blog.html">Blog Details</a></li>
+                    <li><a class="dropdown-item @@terms" href="terms-condition.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </li>
+
+        </ul>
+        <ul class="navbar-nav ml-auto mt-10">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link login-button" href="/logout/">로그아웃</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link login-button" href="{% url 'users:user-login' %}">로그인</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link login-button" href="{% url 'users:user-signup' %}">회원가입</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
